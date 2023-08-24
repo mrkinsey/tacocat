@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Michael Kinsey</title>
+    <title>TACOCAT: A Coding Project By Michael Kinsey</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,7 +39,7 @@
                     <a class="nav-link active" aria-current="page" href="./code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" href="https://github.com/mrkinsey/tacocat">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="#">About</a>
@@ -57,10 +57,43 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World
-function helloWorld(){
-    alert("Hello World!");
-}
+                            function getValue() {
+                                document.getElementById("alert").classList.add("invisible");
+                            
+                                let userString = document.getElementById("userString").value;
+                                let returnObj = palindromeCheck(userString);
+                                displayTacoCat(returnObj);
+                            }
+                            
+                            function palindromeCheck(userString) {
+                                userString = userString.toLowerCase();
+                            
+                                let regex = /[^a-z0-9]/gi;
+                                userString = userString.replace(regex,"");
+                            
+                                let revString = [];
+                                let returnObj = {};
+                            
+                                for (let i = userString.length - 1; i >= 0 ; i--) {
+                                    revString += userString[i];
+                                }
+                            
+                                if (revString == userString) {
+                                    returnObj.msg = "Well done! You entered a palindrome!"
+                                } else {
+                                    returnObj.msg = "Sorry, you did not enter a palindrome."
+                                }
+                            
+                                returnObj.reversed = revString;
+                            
+                                return returnObj;
+                            }
+                            
+                            function displayTacoCat(returnObj) {
+                                document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                                document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
                         </code>
                     </pre>
                 </div>
